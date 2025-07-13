@@ -1,0 +1,12 @@
+{
+
+
+  "compilerOptions": {
+  "outDir": "js", // bien dich vao thu muc js
+  "target": "ES6",
+  "module": "commonjs",
+  "removeComments": true,
+  "esModuleInterop": true, // su dung duoc key import
+
+}
+}
