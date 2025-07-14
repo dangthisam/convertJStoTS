@@ -139,6 +139,25 @@ export const changeMultiStatus = async (req: Request, res: Response) => {
     }
 }
 
+export const createTask = async (req: Request, res: Response) => {
+    try{
+        const data=new Task(req.body);
+        await data.save();
+        res.json({
+            status:200,
+            message:"success",
+            data:data
+        })
+
+    }catch(error){
+        res.json({
+            status:500,
+            message:"fail",
+            error:(error as Error).message
+        })
+    }
+}
+
 
 
 
