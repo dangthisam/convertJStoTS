@@ -159,6 +159,31 @@ export const createTask = async (req: Request, res: Response) => {
 }
 
 
+export const editTask = async (req: Request, res: Response) => {
+try {
+        const id:string=req.params.id;
+    const data=req.body;
+    await Task.findOneAndUpdate({
+        _id:id,
+        deleted:false
+    },data,{
+        new:true
+    })
+    res.json({
+        status:200,
+        message:"success"
+    })
+} catch (error) {
+    res.json({
+        status:500,
+        message:"fail",
+        error:(error as Error).message
+    })
+}
+
+}
+
+
 
 
 
