@@ -1,7 +1,8 @@
 import express, {Express, Request, Response } from "express";
 import dotenv from "dotenv";
 import connect from "./config/db"
-import Task from "./models/task.model";
+
+import bodyParser from "body-parser";
 
 import indexRouter from "./router/index.router";
 
@@ -14,6 +15,13 @@ const app : Express =express();
 
 // Set the network port
 const port : number |string = process.env.PORT  || 3000;
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded())
+
+// parse application/json
+app.use(bodyParser.json())
+
 
 // Define the root path with a greeting message
 indexRouter(app);

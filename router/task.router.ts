@@ -1,7 +1,7 @@
-import express, { Router ,Request, Response } from "express";
+import { Router  } from "express";
 import dotenv from "dotenv";
-import Task from "../models/task.model"; // Đảm bảo đúng đường dẫn model
-import { index , detail } from "../controller/task.controller"; //{TaskController} 
+
+import { index , detail , changeStatus , changeMultiStatus } from "../controller/task.controller"; //{TaskController} 
 dotenv.config();
 
 const router = Router();
@@ -10,5 +10,9 @@ const router = Router();
 router.get("/", index )
 // Lấy chi tiết task theo id
 router.get("/detail/:id",detail )
+
+router.patch("/change-status/:id" , changeStatus);
+
+router.patch("/change_multi_status", changeMultiStatus)
 
 export default router;

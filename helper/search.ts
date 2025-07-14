@@ -1,8 +1,12 @@
 
 
+interface objectSearch{
+    keyword:string,
+    regex?:RegExp
+}
 
-export const search =(query)=>{
-    let objectSearch ={
+export const search =(query: Record<string,any> ):objectSearch=>{
+    let objectSearch:objectSearch={
         keyword:""
     }
 

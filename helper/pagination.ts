@@ -1,7 +1,12 @@
 
+interface objectPagination{
+    currentPage:number;
+    limitPage:number;
+    skip?:number;
+    totalPage?:number;
+}
 
-
- export const objectPagination = (objectPagination , query , countRecords )=>{
+ export const objectPagination = (objectPagination :objectPagination , query:Record<string,any> , countRecords:number) :objectPagination=>{
     if(query.page){
         objectPagination.currentPage=parseInt(query.page);
        }
