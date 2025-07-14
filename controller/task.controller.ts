@@ -7,7 +7,7 @@ export const index = async (req: Request, res: Response) => {
 interface Find{
     deleted:boolean,
     status?:string,
-    title?:string
+    title?:RegExp
 }
 
 
