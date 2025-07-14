@@ -75,3 +75,13 @@ res.json({
 
 
 }
+
+export const detailUser =async (req:Request , res:Response)=>{
+    res.json({
+        message:"success",
+        status:200,
+        data:req["user"]
+    })
+
+
+}
