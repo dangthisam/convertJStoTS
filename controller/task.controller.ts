@@ -1,10 +1,13 @@
 import { Request, Response } from "express";
 import Task from "../models/task.model"; // Đảm bảo đúng đường dẫn model
 import pagination  from "../helper/pagination"
+import searchKeyword from "../helper/search";
+
 export const index = async (req: Request, res: Response) => {
 interface Find{
     deleted:boolean,
-    status?:string
+    status?:string,
+    title?:string
 }
 
 
@@ -24,7 +27,6 @@ if(req.query.status){
 
 
    //start pagination
-
      const countTasks = await Task.countDocuments(find);
     let objectPagination = pagination(
       {
@@ -34,9 +36,15 @@ if(req.query.status){
       req.query,
       countTasks
     )
-
-
 //end pagination
+
+//start search
+const objectSearch =searchKeyword(req.query);
+if(objectSearch.regex){
+      find.title=objectSearch.regex;
+}
+//end search
+
 
   // Truy vấn dữ liệu
   const data = await Task.find(find)
