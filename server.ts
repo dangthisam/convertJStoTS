@@ -1,7 +1,7 @@
 import express, {Express, Request, Response } from "express";
 import dotenv from "dotenv";
 import connect from "./config/db"
-
+import cors from "cors";
 import bodyParser from "body-parser";
 
 import indexRouter from "./router/index.router";
@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded())
 // parse application/json
 app.use(bodyParser.json())
 
-
+app.use(cors())
 // Define the root path with a greeting message
 indexRouter(app);
 
