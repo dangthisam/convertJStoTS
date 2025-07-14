@@ -16,9 +16,15 @@ const find:Find={
 if(req.query.status){
     find.status=req.query.status.toString()
 }
+  //start sort
+   const sort= {};
+   if (req.query.sortKey && req.query.sortValue) {
+    sort[req.query.sortKey as string] = req.query.sortValue as string;
+   }
 
   // Truy vấn dữ liệu
   const data = await Task.find(find)
+  .sort(sort)
 
   res.json(data);
 };
