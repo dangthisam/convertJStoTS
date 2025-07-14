@@ -185,7 +185,7 @@ try {
 
 export const deleteTask = async (req: Request, res: Response) => {
     try {
-        const id=req.params.id;
+        const id:string=req.params.id;
         await Task.findOneAndUpdate({
             _id:id,
             deleted:false
@@ -208,6 +208,29 @@ export const deleteTask = async (req: Request, res: Response) => {
     }
 }
 
+
+export const deleteManyTask = async (req: Request, res: Response) => {
+    const ids:string[]=req.body.ids;
+    try {
+        await Task.updateMany({
+            _id:{$in:ids},
+            deleted:false
+        },{
+            deleted:true,
+            deletedAt:new Date()
+        })
+        res.json({
+            status:200,
+            message:"success"
+        })
+    } catch (error) {
+        res.json({
+            status:500,
+            message:"fail",
+            error:(error as Error).message
+        })
+    }
+}
 
 
 

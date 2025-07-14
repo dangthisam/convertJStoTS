@@ -1,7 +1,7 @@
 import { Router  } from "express";
 import dotenv from "dotenv";
 
-import { index , detail , changeStatus , changeMultiStatus  , createTask, editTask , deleteTask} from "../controller/task.controller"; //{TaskController} 
+import { index , detail , changeStatus , changeMultiStatus  , createTask, editTask , deleteTask  , deleteManyTask} from "../controller/task.controller"; //{TaskController} 
 dotenv.config();
 
 const router = Router();
@@ -20,5 +20,7 @@ router.post("/create-task" , createTask)
 router.post("/edit-task/:id" , editTask);
 
 router.delete("/delete-task/:id" , deleteTask)
+
+router.delete("/delete-manytask" , deleteManyTask)
 
 export default router;
