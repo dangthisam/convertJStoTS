@@ -5,9 +5,16 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon --exec tsx server.ts",
-    "build": "tsc"
+    "build": "rimraf dist && tsc",
+  "ts.check": "tsc --project tsconfig.json",
+  "add-build": "git add dist"
   },
   "author": "",
+   "pre-commit": [
+      "ts.check",
+      "build",
+      "add-build"
+  ],
   "license": "ISC",
   "description": "",
   "type": "module",
@@ -17,7 +24,9 @@
     "dotenv": "^17.2.0",
     "express": "^5.1.0",
     "md5": "^2.3.0",
-    "mongoose": "^8.16.3"
+    "mongoose": "^8.16.3",
+    "pre-commit": "^1.2.2",
+    "rimraf": "^6.0.1"
   },
   "devDependencies": {
     "@types/express": "^5.0.3",

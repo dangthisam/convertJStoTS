@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-  "outDir": "js", // bien dich vao thu muc js
+    "outDir": "dist", // bien dich vao thu muc js
   "target": "ES6",
   "module": "commonjs",
   "removeComments": true,
