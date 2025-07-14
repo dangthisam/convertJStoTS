@@ -2,12 +2,20 @@ import { Request, Response } from "express";
 import Task from "../models/task.model"; // Đảm bảo đúng đường dẫn model
 
 export const index = async (req: Request, res: Response) => {
-  // Khai báo kiểu cho filter
-  const find: any = {
-    
-    deleted: false
-  };
+interface Find{
+    deleted:boolean,
+    status?:string
+}
 
+
+const find:Find={
+    deleted:false
+
+}
+
+if(req.query.status){
+    find.status=req.query.status.toString()
+}
 
   // Truy vấn dữ liệu
   const data = await Task.find(find)
